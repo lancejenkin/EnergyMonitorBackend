@@ -109,7 +109,7 @@ def main(argv):
                         usage = determine_usage(current_timestamp, last_timestamp)
                         state_change(db, ldr_index.name, current_timestamp, usage)
 
-                    last_state_timestamps[loop_index] = current_timestamp
+                        last_state_timestamps[loop_index] = current_timestamp
             last_ldr_States = ldr_states
 
 
