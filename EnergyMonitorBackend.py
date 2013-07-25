@@ -20,7 +20,7 @@ LDR_INDICES = (LdrIndex("peak", PEAK), LdrIndex("off peak", OFF_PEAK), LdrIndex(
 
 def initialise_state(bus, address):
     # Initialise the EnergyMonitor, tell it to read the state
-    bus.wrte_byte(address, 0x01)
+    bus.write_byte(address, 0x01)
 
 
 def read_state(bus, address):
