@@ -11,8 +11,8 @@ ADDRESS = 0x17 # Address of EnergyMonitor slave
 
 # Position in state byte of the meter box's LED state
 PEAK = 0
-OFF_PEAK = 1
-TOTAL = 2
+OFF_PEAK = 2
+TOTAL = 1
 
 LdrIndex = namedtuple("LdrIndex", ["name", "index"])
 LDR_INDICES = (LdrIndex("peak", PEAK), LdrIndex("off peak", OFF_PEAK), LdrIndex("total", TOTAL))
