@@ -33,9 +33,9 @@ def read_state(bus, address):
         return None
 
     # Convert useful information from byte to tuple
-    state = ((state_byte & (1 << PEAK) >> PEAK),
-             (state_byte & (1 << OFF_PEAK) >> OFF_PEAK),
-             (state_byte & (1 << TOTAL) >> TOTAL))
+    state = (((state_byte & (1 << PEAK)) >> PEAK),
+             ((state_byte & (1 << OFF_PEAK)) >> OFF_PEAK),
+             ((state_byte & (1 << TOTAL)) >> TOTAL))
 
     return state
 
