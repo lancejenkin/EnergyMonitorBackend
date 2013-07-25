@@ -52,6 +52,7 @@ def initialize_database(database_file):
         'energy_usage' REAL)""")
     cursor.execute("""CREATE INDEX IF NOT EXISTS meter_index ON state_readings (meter_box)""")
     cursor.execute("""CREATE INDEX IF NOT EXISTS timestamp_index ON state_readings (utc_timestamp)""")
+    cursor.execute("""PRAGMA synchronous=OFF""")
     db.commit()
 
     return db
