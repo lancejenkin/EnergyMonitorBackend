@@ -103,7 +103,7 @@ def main(argv):
                     if last_state_timestamps[loop_index] is not None:
                         last_timestamp = last_state_timestamps[loop_index]
                         usage = determine_usage(current_timestamp, last_timestamp)
-                        state_change(ldr_index.name, current_timestamp, usage)
+                        state_change(db, ldr_index.name, current_timestamp, usage)
 
                     last_state_timestamps[loop_index] = current_timestamp
 
