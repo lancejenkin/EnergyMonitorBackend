@@ -76,7 +76,7 @@
       <file leaf-file-name="EnergyMonitorBackend.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/EnergyMonitorBackend.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="111" column="24" selection-start="3512" selection-end="3512" vertical-scroll-proportion="0.6402214">
+            <state line="112" column="27" selection-start="3593" selection-end="3593" vertical-scroll-proportion="0.6678967">
               <folding>
                 <element signature="e#27#61#0" expanded="true" />
               </folding>
@@ -469,7 +469,7 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/EnergyMonitorBackend.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="111" column="24" selection-start="3512" selection-end="3512" vertical-scroll-proportion="0.6402214">
+        <state line="112" column="27" selection-start="3593" selection-end="3593" vertical-scroll-proportion="0.6678967">
           <folding>
             <element signature="e#27#61#0" expanded="true" />
           </folding>
