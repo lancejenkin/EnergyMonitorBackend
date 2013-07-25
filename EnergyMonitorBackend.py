@@ -2,11 +2,12 @@ __author__ = 'lancejenkin'
 from collections import namedtuple
 import sqlite3
 import smbus
+import os
 import time
 
 SMBUS_PORT = 1 # I2C port
 ADDRESS = 0x17 # Address of EnergyMonitor slave
-DB_FILE = "database.sqlite"
+DB_FILE = os.path.join(os.path.realpath(__file__), "database.sqlite")
 
 # Position in state byte of the meter box's LED state
 PEAK = 0
