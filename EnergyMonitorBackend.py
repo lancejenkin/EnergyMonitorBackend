@@ -46,7 +46,7 @@ def initialize_database(database_file):
     cursor = db.cursor()
 
     cursor.execute("""CREATE TABLE IF NOT EXISTS 'state_readings'
-        ('id' INTERGER PRIMARY KEY AUTOINCREMENT,
+        ('id' INTEGER PRIMARY KEY AUTOINCREMENT,
         'meter_box' VARCHAR,
         'utc_timestamp' INTEGER,
         'energy_usage' REAL)""")
