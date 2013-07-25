@@ -50,7 +50,8 @@ def initialize_database(database_file):
         'meter_box' VARCHAR,
         'utc_timestamp' INTEGER,
         'energy_usage' REAL)""")
-
+    cursor.execute("""CREATE INDEX IF NOT EXISTS meter_index ON state_readings (meter_box)""")
+    cursor.execute("""CREATE INDEX IF NOT EXISTS timestamp_index ON state_readings (utc_timestamp)""")
     db.commit()
 
     return db
@@ -63,6 +64,7 @@ def state_change(db, meter_box, timestamp, energy_usage):
     cursor.execute("""INSERT INTO state_readings
         (meter_box, utc_timestamp, energy_usage) VALUES (?, ?, ?)""",
                    (meter_box, timestamp, energy_usage))
+
     db.commit()
 
 
