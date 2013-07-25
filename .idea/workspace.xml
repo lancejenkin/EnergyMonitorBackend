@@ -6,7 +6,7 @@
     </list>
     <ignored path="EnergyMonitorBackend.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/EnergyMonitorBackend.py" changelist="6a45e503-74b4-4a3d-9b92-3534a6a9adff" time="1374791318052" ignored="false" />
+    <file path="/EnergyMonitorBackend.py" changelist="6a45e503-74b4-4a3d-9b92-3534a6a9adff" time="1374792208360" ignored="false" />
     <file path="/Dummy.txt" changelist="6a45e503-74b4-4a3d-9b92-3534a6a9adff" time="1374749495123" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -76,7 +76,7 @@
       <file leaf-file-name="EnergyMonitorBackend.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/EnergyMonitorBackend.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="112" column="27" selection-start="3593" selection-end="3593" vertical-scroll-proportion="0.6678967">
+            <state line="113" column="77" selection-start="3669" selection-end="3669" vertical-scroll-proportion="0.80627304">
               <folding>
                 <element signature="e#27#61#0" expanded="true" />
               </folding>
@@ -469,7 +469,7 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/EnergyMonitorBackend.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="112" column="27" selection-start="3593" selection-end="3593" vertical-scroll-proportion="0.6678967">
+        <state line="113" column="77" selection-start="3669" selection-end="3669" vertical-scroll-proportion="0.80627304">
           <folding>
             <element signature="e#27#61#0" expanded="true" />
           </folding>
