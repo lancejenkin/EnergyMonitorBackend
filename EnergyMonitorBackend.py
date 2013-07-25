@@ -11,8 +11,8 @@ ADDRESS = 0x17 # Address of EnergyMonitor slave
 
 # Position in state byte of the meter box's LED state
 PEAK = 0
-OFF_PEAK = 2
-TOTAL = 1
+OFF_PEAK = 1
+TOTAL = 2
 
 LdrIndex = namedtuple("LdrIndex", ["name", "index"])
 LDR_INDICES = (LdrIndex("peak", PEAK), LdrIndex("off peak", OFF_PEAK), LdrIndex("total", TOTAL))
@@ -69,9 +69,10 @@ def state_change(db, meter_box, timestamp, energy_usage):
 def determine_usage(timestamp, last_timestamp):
     # Determine the current energy usage
     # A state change represents 1 Watt . Hour
-    # Therefore 1 * 60 * 60 / (timestamp - last_timestamp) = current usage in watts
+    # Time stamps are in milliseconds
+    # Therefore 1000 * 60 * 60 / (timestamp - last_timestamp) = current usage in watts
 
-    return 60 * 60 / (timestamp - last_timestamp)
+    return 1000 * 60 * 60 / (timestamp - last_timestamp)
 
 
 def get_timestamp():
