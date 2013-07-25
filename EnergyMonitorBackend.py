@@ -42,7 +42,7 @@ def read_state(bus, address):
 
 def initialize_database(database_file):
     # Initialize the database for capturing LDR state changes
-    db = sqlite3.connect(database_file)
+    db = sqlite3.connect(database_file, isolation_level=None)
     cursor = db.cursor()
 
     cursor.execute("""CREATE TABLE IF NOT EXISTS 'state_readings'
@@ -65,7 +65,7 @@ def state_change(db, meter_box, timestamp, energy_usage):
         (meter_box, utc_timestamp, energy_usage) VALUES (?, ?, ?)""",
                    (meter_box, timestamp, energy_usage))
 
-    db.commit()
+
 
 
 def determine_usage(timestamp, last_timestamp):
