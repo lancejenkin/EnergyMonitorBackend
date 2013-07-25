@@ -40,9 +40,9 @@ def read_state(bus, address):
     return state
 
 
-def initialize_database():
+def initialize_database(database_file):
     # Initialize the database for capturing LDR state changes
-    db = sqlite3.connect(DB_FILE)
+    db = sqlite3.connect(database_file)
     cursor = db.cursor()
 
     cursor.execute("""CREATE TABLE IF NOT EXISTS 'state_readings'
