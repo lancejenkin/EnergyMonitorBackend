@@ -103,7 +103,7 @@ def main(argv):
             for loop_index, ldr_index in enumerate(LDR_INDICES):
                 if last_ldr_states[ldr_index.index] != ldr_states[loop_index]:
                     # State change
-
+                    current_timestamp = get_timestamp()
                     if last_state_timestamps[loop_index] is not None:
                         last_timestamp = last_state_timestamps[loop_index]
                         usage = determine_usage(current_timestamp, last_timestamp)
