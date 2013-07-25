@@ -3,11 +3,11 @@ from collections import namedtuple
 import sqlite3
 import smbus
 import os
+import sys
 import time
 
 SMBUS_PORT = 1 # I2C port
 ADDRESS = 0x17 # Address of EnergyMonitor slave
-DB_FILE = os.path.join(os.path.realpath(__file__), "database.sqlite")
 
 # Position in state byte of the meter box's LED state
 PEAK = 0
@@ -79,9 +79,9 @@ def get_timestamp():
     return int((time.time() + 0.5) * 1000)
 
 
-def main():
+def main(argv):
     # Main method
-    db = initialize_database()
+    db = initialize_database(argv[1])
     last_ldr_states = None
     bus = smbus.SMBus(SMBUS_PORT)
     # The timestamp of the last ldr state change
@@ -110,4 +110,4 @@ def main():
 
 
 if __name__=="__main__":
-    main()
+    main(sys.argv)
