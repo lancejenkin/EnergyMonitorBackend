@@ -98,6 +98,7 @@ def main(argv):
     bus = smbus.SMBus(SMBUS_PORT)
     # The timestamp of the last ldr state change
     last_state_timestamps = [None] * len(LDR_INDICES)
+    one_change_since_none = False
     while True:
         initialise_state(bus, ADDRESS)
         time.sleep(0.01)
@@ -113,12 +114,17 @@ def main(argv):
                     # State change
                     current_timestamp = get_timestamp()
                     if last_state_timestamps[loop_index] is not None:
-                        last_timestamp = last_state_timestamps[loop_index]
-                        usage = determine_usage(current_timestamp, last_timestamp)
-                        state_change(db, ldr_index.name, current_timestamp, usage)
+                        if one_change_since_none:
+                            # We need at least one state change before acurately
+                            # determining energy usage
+                            last_timestamp = last_state_timestamps[loop_index]
+                            usage = determine_usage(current_timestamp, last_timestamp)
+                            state_change(db, ldr_index.name, current_timestamp, usage)
 
-                        last_state_timestamps[loop_index] = current_timestamp
+                            last_state_timestamps[loop_index] = current_timestamp
+                        one_change_since_none = True
                     else:
+                        one_change_since_none = False
                         last_state_timestamps[loop_index] = current_timestamp
 
             last_ldr_states = ldr_states
