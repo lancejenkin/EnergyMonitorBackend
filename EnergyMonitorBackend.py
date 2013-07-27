@@ -20,14 +20,22 @@ LDR_INDICES = (LdrIndex("peak", PEAK), LdrIndex("off peak", OFF_PEAK), LdrIndex(
 
 def initialise_state(bus, address):
     # Initialise the EnergyMonitor, tell it to read the state
-    bus.write_byte(address, 0x01)
+    try:
+        bus.write_byte(address, 0x01)
+    except:
+        # Error writing state
+        pass
 
 
 def read_state(bus, address):
     # Reads the state of the LDR
     # returns the result as a 3-tuple
+    try:
+        state_byte = bus.read_byte(address)
+    except:
+        # Error reading state
+        state_byte = 0xFF
 
-    state_byte = bus.read_byte(address)
     if state_byte == 0xFF:
         # Data wasn't ready
         return None
