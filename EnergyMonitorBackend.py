@@ -10,12 +10,12 @@ SMBUS_PORT = 1 # I2C port
 ADDRESS = 0x17 # Address of EnergyMonitor slave
 
 # Position in state byte of the meter box's LED state
-PEAK = 0
-OFF_PEAK = 1
-TOTAL = 2
+PHASE_1 = 0
+PHASE_2 = 1
+PHASE_3 = 2
 
 LdrIndex = namedtuple("LdrIndex", ["name", "index"])
-LDR_INDICES = (LdrIndex("peak", PEAK), LdrIndex("off peak", OFF_PEAK), LdrIndex("total", TOTAL))
+LDR_INDICES = (LdrIndex("phase 1", PHASE_1), LdrIndex("phase 2", PHASE_2), LdrIndex("phase 3", PHASE_3))
 
 
 def initialise_state(bus, address):
@@ -41,9 +41,9 @@ def read_state(bus, address):
         return None
 
     # Convert useful information from byte to tuple
-    state = (((state_byte & (1 << PEAK)) >> PEAK),
-             ((state_byte & (1 << OFF_PEAK)) >> OFF_PEAK),
-             ((state_byte & (1 << TOTAL)) >> TOTAL))
+    state = (((state_byte & (1 << PHASE_1)) >> PHASE_1),
+             ((state_byte & (1 << PHASE_2)) >> PHASE_2),
+             ((state_byte & (1 << PHASE_3)) >> PHASE_3))
 
     return state
 
@@ -100,7 +100,7 @@ def main(argv):
     last_state_timestamps = [None] * len(LDR_INDICES)
     while True:
         initialise_state(bus, ADDRESS)
-        time.sleep(0.1)
+        time.sleep(0.01)
         ldr_states = read_state(bus, ADDRESS)
 
         if last_ldr_states is None:
