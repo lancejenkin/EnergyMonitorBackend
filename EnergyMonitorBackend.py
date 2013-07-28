@@ -1,6 +1,7 @@
 __author__ = 'lancejenkin'
 from collections import namedtuple
 import sqlite3
+import pymysql
 import smbus
 import os
 import sys
@@ -8,6 +9,11 @@ import time
 
 SMBUS_PORT = 1 # I2C port
 ADDRESS = 0x17 # Address of EnergyMonitor slave
+
+MYSQL_HOST = "10.0.0.6"
+MYSQL_USER = "lance"
+MYSQL_PASS = "lance"
+MYSQL_DB = "energy_monitor"
 
 # Position in state byte of the meter box's LED state
 PHASE_1 = 0
@@ -48,20 +54,9 @@ def read_state(bus, address):
     return state
 
 
-def initialize_database(database_file):
+def initialize_database():
     # Initialize the database for capturing LDR state changes
-    db = sqlite3.connect(database_file, isolation_level=None)
-    cursor = db.cursor()
-
-    cursor.execute("""CREATE TABLE IF NOT EXISTS 'state_readings'
-        ('id' INTEGER PRIMARY KEY AUTOINCREMENT,
-        'meter_box' VARCHAR,
-        'utc_timestamp' INTEGER,
-        'energy_usage' REAL)""")
-    cursor.execute("""CREATE INDEX IF NOT EXISTS meter_index ON state_readings (meter_box)""")
-    cursor.execute("""CREATE INDEX IF NOT EXISTS timestamp_index ON state_readings (utc_timestamp)""")
-    cursor.execute("""PRAGMA synchronous=OFF""")
-    db.commit()
+    db = pymysql.connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DB)
 
     return db
 
@@ -71,7 +66,7 @@ def state_change(db, meter_box, timestamp, energy_usage):
     cursor = db.cursor()
 
     cursor.execute("""INSERT INTO state_readings
-        (meter_box, utc_timestamp, energy_usage) VALUES (?, ?, ?)""",
+        (meter_box, utc_timestamp, energy_usage) VALUES (%s, %s, %s)""",
                    (meter_box, timestamp, energy_usage))
 
 
