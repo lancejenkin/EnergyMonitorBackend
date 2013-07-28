@@ -66,7 +66,7 @@ def state_change(db, meter_box, timestamp, energy_usage):
     cursor = db.cursor()
 
     cursor.execute("""INSERT INTO state_readings
-        (meter_box, utc_timestamp, energy_usage) VALUES (%s, %s, %s)""",
+        (meter_box,utc_timestamp,energy_usage) VALUES (%s, %s, %s)""",
                    (meter_box, timestamp, energy_usage))
 
 
