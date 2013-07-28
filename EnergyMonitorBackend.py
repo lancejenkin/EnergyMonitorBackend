@@ -23,7 +23,7 @@ PHASE_3 = 2
 LdrIndex = namedtuple("LdrIndex", ["name", "index"])
 LDR_INDICES = (LdrIndex("phase 1", PHASE_1), LdrIndex("phase 2", PHASE_2), LdrIndex("phase 3", PHASE_3))
 
-
+MAX_READING = 20e3
 def initialise_state(bus, address):
     # Initialise the EnergyMonitor, tell it to read the state
     try:
@@ -63,6 +63,9 @@ def initialize_database():
 
 def state_change(db, meter_box, timestamp, energy_usage):
     # Store the state change in the database
+    if energy_usage > MAX_READING:
+        # due to glitches the energy may be unrealisticly high
+        return
     cursor = db.cursor()
 
     cursor.execute("""INSERT INTO state_readings (`meter_box`,`utc_timestamp`,`energy_usage`) VALUES (%s, %s, %s)""",
