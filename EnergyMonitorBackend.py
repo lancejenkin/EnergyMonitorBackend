@@ -88,7 +88,7 @@ def get_timestamp():
 
 def main(argv):
     # Main method
-    db = initialize_database(argv[1])
+    db = initialize_database()
     last_ldr_states = None
     bus = smbus.SMBus(SMBUS_PORT)
     # The timestamp of the last ldr state change
